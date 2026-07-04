@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday!</title>
+<meta name="title" content="Happy Birthday!">
+<meta name="description" content="A beautiful birthday surprise page with animations, love, and joy.">
+
+<meta name="theme-color" content="#ff69b4">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-cake" style="font-size: 3rem; animation: bounce 1s ease infinite;">🎂</div>
+  <div class="loader-text">Preparing something special...</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<div class="auto-progress" id="progressBar"></div>
+
+<div class="particles" id="particles"></div>
+
+<div class="nav-dots" id="navDots"></div>
+
+<button class="music-toggle" id="musicBtn" title="Toggle Music">
+  <div class="music-bars">
+    <div class="music-bar"></div>
+    <div class="music-bar"></div>
+    <div class="music-bar"></div>
+    <div class="music-bar"></div>
+  </div>
+</button>
+
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
+  <img id="lightbox-img" src="" alt="Photo">
+</div>
+
+<main>
+  <div class="page-section hero visible" data-section="Welcome">
+    <img class="hero-photo" src="1.png" alt="Birthday Person">
+    <div class="hero-badge"><i data-lucide="sparkles"></i> It's a Special Day!</div>
+    <h1>Happy Birthday<br>ahmed!</h1>
+    <p class="hero-sub">Wishing you the most magical day <i data-lucide="star"></i></p>
+    <button class="nav-btn" onclick="startJourney()">Begin the Journey <i data-lucide="arrow-right"></i></button>
+  </div>
+
+  <div class="page-section" data-section="Message" id="sec-message">
+    <h2 class="section-title"><span class="title-icon"><i data-lucide="mail"></i></span>A Special Message</h2>
+    <div class="message-card">
+      <p>Dear ahmed,</p>
+      <br>
+      <p>On this beautiful day, I want you to know how incredibly special you are. Your smile lights up every room, your kindness touches every heart, and your spirit inspires everyone around you.</p>
+      <br>
+      <p>May this new year of your life bring you endless joy, boundless love, and all the dreams your heart desires. You deserve every bit of happiness the world has to offer. <i data-lucide="flower-2" class="inline-icon"></i></p>
+      <br>
+      <p>Here's to another year of adventures, laughter, and beautiful memories together. Never stop being the amazing person you are!</p>
+      <div class="signature">With all my love <i data-lucide="heart"></i></div>
+    </div>
+    <div class="section-nav">
+      <button class="nav-btn" onclick="goToSection(0)"><i data-lucide="chevron-left"></i> Back</button>
+      <button class="nav-btn" onclick="goToSection(2)">Next Photos <i data-lucide="chevron-right"></i></button>
+    </div>
+  </div>
+
+  <div class="page-section" data-section="Photos" id="sec-photos">
+    <h2 class="section-title"><span class="title-icon"><i data-lucide="camera"></i></span>Cherished Moments</h2>
+    <div class="gallery">
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img loading="lazy" src="1.png" alt="Memory 1">
+        <div class="gallery-overlay"><span><i data-lucide="smile"></i> Beautiful Smile</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img loading="lazy" src="2.png" alt="Memory 2">
+        <div class="gallery-overlay"><span><i data-lucide="sun"></i> Golden Hour</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img loading="lazy" src="3.png" alt="Memory 3">
+        <div class="gallery-overlay"><span><i data-lucide="laugh"></i> Pure Joy</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img loading="lazy" src="4.png" alt="Memory 4">
+        <div class="gallery-overlay"><span><i data-lucide="star"></i> Best Day Ever</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img loading="lazy" src="5.png" alt="Memory 5">
+        <div class="gallery-overlay"><span><i data-lucide="sparkles"></i> Always Shining</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img loading="lazy" src="6.png" alt="Memory 6">
+        <div class="gallery-overlay"><span><i data-lucide="heart"></i> Forever Young</span></div>
+      </div>
+    </div>
+    <div class="section-nav">
+      <button class="nav-btn" onclick="goToSection(1)"><i data-lucide="chevron-left"></i> Back</button>
+      <button class="nav-btn" onclick="goToSection(3)">Next Cake <i data-lucide="chevron-right"></i></button>
+    </div>
+  </div>
+
+  <div class="page-section" data-section="Cake" id="sec-cake">
+    <h2 class="section-title"><span class="title-icon"><i data-lucide="cake"></i></span>Time for Cake!</h2>
+    <div style="position: relative; width: 300px; height: 300px; margin: 2rem auto;">
+      <div class="cake">
+        <div class="plate"></div>
+        <div class="layer layer-bottom"></div>
+        <div class="layer layer-middle"></div>
+        <div class="layer layer-top"></div>
+        <div class="icing"></div>
+        <div class="drip drip1"></div>
+        <div class="drip drip2"></div>
+        <div class="drip drip3"></div>
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section-nav">
+      <button class="nav-btn" onclick="goToSection(2)"><i data-lucide="chevron-left"></i> Back</button>
+      <button class="nav-btn" onclick="goToSection(4)">Next Wishes <i data-lucide="chevron-right"></i></button>
+    </div>
+  </div>
+
+  <div class="page-section" data-section="Wishes" id="sec-wishes">
+    <h2 class="section-title"><span class="title-icon"><i data-lucide="gift"></i></span>Birthday Wishes</h2>
+    <div class="wishes-grid">
+      <div class="wish-card"><div class="wish-icon"><i data-lucide="sun"></i></div><p class="wish-text">May your life be as colorful and vibrant as a rainbow after the rain.</p></div>
+      <div class="wish-card"><div class="wish-icon"><i data-lucide="trophy"></i></div><p class="wish-text">Wishing you success in everything you touch this year and always.</p></div>
+      <div class="wish-card"><div class="wish-icon"><i data-lucide="feather"></i></div><p class="wish-text">May you spread your wings and soar to new heights this birthday!</p></div>
+      <div class="wish-card"><div class="wish-icon"><i data-lucide="flower-2"></i></div><p class="wish-text">Like a sunflower, may you always turn towards the light and grow.</p></div>
+      <div class="wish-card"><div class="wish-icon"><i data-lucide="laugh"></i></div><p class="wish-text">Here's to more laughter, more adventures, and more beautiful moments!</p></div>
+      <div class="wish-card"><div class="wish-icon"><i data-lucide="heart"></i></div><p class="wish-text">Luck, love, and happiness — may they follow you everywhere you go.</p></div>
+    </div>
+    <div class="section-nav">
+      <button class="nav-btn" onclick="goToSection(3)"><i data-lucide="chevron-left"></i> Back</button>
+      <button class="nav-btn" onclick="goToSection(0)">Back to Start <i data-lucide="chevron-up"></i></button>
+    </div>
+  </div>
+
+  <footer>
+    <p>Made with <span class="heart"><i data-lucide="heart"></i></span> just for you</p>
+    <p style="margin-top:.5rem;font-size:.75rem;color:rgba(255,255,255,0.3)">
+      <span class="footer-cake">🎂 Happy Birthday Sarah!</span>
+    </p>
+  </footer>
+</main>
+
+<audio id="bgMusic" loop preload="none">
+  <source src="mage.mp3" type="audio/mpeg">
+</audio>
+
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.383.0/dist/umd/lucide.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
