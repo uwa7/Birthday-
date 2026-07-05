@@ -33,7 +33,6 @@ function updateProgress() {
 
 function startJourney() {
   goToSection(1);
-  // محاولة تشغيل الموسيقى تلقائياً عند بدء الرحلة
   const music = document.getElementById('bgMusic');
   if (music && music.paused) {
     music.play().then(() => {
@@ -129,16 +128,48 @@ function createBgParticles() {
 }
 createBgParticles();
 
-// دالة إطفاء الشمعة الذكية والاحتفال
+
+// BALLOONS
+function triggerBalloons(count = 25) {
+  const colors = ['#f472b6', '#a78bfa', '#fbbf24', '#34d399', '#60a5fa', '#f43f5e'];
+  
+  for (let i = 0; i < count; i++) {
+    const balloon = document.createElement('div');
+    balloon.className = 'balloon';
+    
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    balloon.style.setProperty('--b-color', color);
+    
+    const left = Math.random() * 100;
+    const sizeMult = Math.random() * 0.5 + 0.8; 
+    const duration = Math.random() * 4 + 4; 
+    const delay = Math.random() * 1.5;
+    
+    balloon.style.left = `${left}vw`;
+    balloon.style.transform = `scale(${sizeMult})`;
+    balloon.style.animationDuration = `${duration}s`;
+    balloon.style.animationDelay = `${delay}s`;
+    
+    document.body.appendChild(balloon);
+    
+    setTimeout(() => balloon.remove(), (duration + delay) * 1000);
+  }
+}
+
+// BLOW OUT CANDLES
 function blowOutCandle() {
   const flame = document.getElementById('candleFlame');
+  const btn = document.querySelector('.blow-btn');
   const instruction = document.getElementById('cakeInstruction');
   
   if (flame && !flame.classList.contains('extinguished')) {
-    // 1. إطفاء النار
     flame.classList.add('extinguished');
     
-    // 2. تغيير النص الإرشادي فورا وبشكل مبهج
+    if (btn) {
+      btn.style.opacity = '0';
+      setTimeout(() => btn.style.display = 'none', 300);
+    }
+
     if (instruction) {
       instruction.innerText = "Yay! Happy Birthday! 🎉🎂";
       instruction.style.color = "var(--accent)";
@@ -146,23 +177,35 @@ function blowOutCandle() {
       instruction.style.textShadow = "0 0 20px var(--glow)";
     }
     
-    // 3. إطلاق صواريخ الاحتفال (الكونفيتي)
-    triggerConfetti(250);
+    triggerBalloons(35);
+    triggerConfetti(150); 
   }
 }
 
-// تشغيل الأيقونات
+// ENVELOPE OPENING FUNCTION
+function openEnvelope() {
+  const env = document.querySelector('.envelope');
+  if (env && !env.classList.contains('open')) {
+    env.classList.add('open');
+    // إطلاق بعض الكونفيتي البسيط احتفالاً بفتح الرسالة
+    triggerConfetti(60);
+  }
+}
+
+// LUCIDE ICONS
 document.addEventListener("DOMContentLoaded", () => {
   if (typeof lucide !== 'undefined') {
     lucide.createIcons();
   }
 });
-// LOADER REMOVAL - إخفاء شاشة التحميل
+
+// LOADER REMOVAL
 window.addEventListener('load', () => {
   setTimeout(() => {
     const loader = document.getElementById('loader');
     if (loader) {
       loader.classList.add('hide');
     }
-  }, 1500); // الشاشة هتختفي بعد ثانية ونص من التحميل
+  }, 1500); 
 });
+  
