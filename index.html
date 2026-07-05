@@ -115,27 +115,39 @@
         <div class="drip drip2"></div>
         <div class="drip drip3"></div>
         <div class="candle">
-            <div class="flame"></div>
+            <div class="flame" id="candleFlame"></div>
         </div>
       </div>
     </div>
+    
+    <button class="blow-btn" onclick="blowOutCandle()">Blow the candles</button>
+
     <div class="section-nav">
       <button class="nav-btn" onclick="goToSection(2)"><i data-lucide="chevron-left"></i> Back</button>
-      <button class="nav-btn" onclick="goToSection(4)">Next Wishes <i data-lucide="chevron-right"></i></button>
+      <button class="nav-btn" onclick="goToSection(4)">Final Secret <i data-lucide="chevron-right"></i></button>
     </div>
   </div>
 
-  <div class="page-section" data-section="Wishes" id="sec-wishes">
-    <h2 class="section-title"><span class="title-icon"><i data-lucide="gift"></i></span>Birthday Wishes</h2>
-    <div class="wishes-grid">
-      <div class="wish-card"><div class="wish-icon"><i data-lucide="sun"></i></div><p class="wish-text">May your life be as colorful and vibrant as a rainbow after the rain.</p></div>
-      <div class="wish-card"><div class="wish-icon"><i data-lucide="trophy"></i></div><p class="wish-text">Wishing you success in everything you touch this year and always.</p></div>
-      <div class="wish-card"><div class="wish-icon"><i data-lucide="feather"></i></div><p class="wish-text">May you spread your wings and soar to new heights this birthday!</p></div>
-      <div class="wish-card"><div class="wish-icon"><i data-lucide="flower-2"></i></div><p class="wish-text">Like a sunflower, may you always turn towards the light and grow.</p></div>
-      <div class="wish-card"><div class="wish-icon"><i data-lucide="laugh"></i></div><p class="wish-text">Here's to more laughter, more adventures, and more beautiful moments!</p></div>
-      <div class="wish-card"><div class="wish-icon"><i data-lucide="heart"></i></div><p class="wish-text">Luck, love, and happiness — may they follow you everywhere you go.</p></div>
+  <div class="page-section" data-section="Letter" id="sec-letter">
+    <h2 class="section-title"><span class="title-icon"><i data-lucide="mail-open"></i></span>A Secret For You</h2>
+    <p style="color: var(--text-muted); margin-bottom: 2rem;">Tap the seal to open...</p>
+    
+    <div class="envelope-wrapper" onclick="openEnvelope()">
+      <div class="envelope">
+        <div class="envelope-flap"></div>
+        <div class="envelope-seal">
+          <i data-lucide="heart"></i>
+        </div>
+        <div class="envelope-letter">
+          <h3>For You, ahmed</h3>
+          <p>This is just the beginning of another amazing chapter. Stay as incredible, kind, and unique as you've always been.</p>
+          <p>I'm so glad to celebrate this special day with you. Keep shining!</p>
+          <div class="letter-sig">With love ❤️</div>
+        </div>
+      </div>
     </div>
-    <div class="section-nav">
+
+    <div class="section-nav" style="margin-top: 4rem;">
       <button class="nav-btn" onclick="goToSection(3)"><i data-lucide="chevron-left"></i> Back</button>
       <button class="nav-btn" onclick="goToSection(0)">Back to Start <i data-lucide="chevron-up"></i></button>
     </div>
@@ -144,7 +156,7 @@
   <footer>
     <p>Made with <span class="heart"><i data-lucide="heart"></i></span> just for you</p>
     <p style="margin-top:.5rem;font-size:.75rem;color:rgba(255,255,255,0.3)">
-      <span class="footer-cake">🎂 Happy Birthday Sarah!</span>
+      <span class="footer-cake">🎂 Happy Birthday ahmed!</span>
     </p>
   </footer>
 </main>
