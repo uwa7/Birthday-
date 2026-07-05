@@ -65,14 +65,6 @@ h1{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:700;line-
 .gallery-item:hover .gallery-overlay{opacity:1}
 @media(max-width:768px){.gallery{grid-template-columns:repeat(2,1fr)}}
 
-/* WISHES GRID */
-.wishes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;width:100%}
-.wish-card{background:var(--card);border:1px solid rgba(255,255,255,0.05);padding:25px;border-radius:20px;transition:.3s;display:flex;flex-direction:column;gap:15px}
-.wish-card:hover{transform:translateY(-5px);background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.1)}
-.wish-icon{width:44px;height:44px;border-radius:12px;background:var(--glass);display:flex;align-items:center;justify-content:center;color:var(--accent3)}
-.wish-text{font-size:.95rem;color:var(--text-muted);line-height:1.5}
-@media(max-width:768px){.wishes-grid{grid-template-columns:1fr}}
-
 /* LIGHTBOX */
 .lightbox{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;backdrop-filter:blur(20px);cursor:zoom-out}
 .lightbox.active{display:flex}
@@ -162,21 +154,6 @@ footer .heart{display:inline-block;color:var(--accent);animation:heartbeat 1.5s 
 }
 .candle:before { content: ""; position: absolute; top: 0; left: 0; width: 16px; height: 8px; border-radius: 50%; background-color: #ad030f; }
 
-.flame {
-  position: absolute; background-color: orange; width: 15px; height: 35px;
-  border-radius: 10px 10px 10px 10px/25px 25px 10px 10px; top: -34px; left: 50%; margin-left: -7.5px; z-index: 10;
-  box-shadow: 0 0 10px rgba(255,165,0,0.5), 0 0 20px rgba(255,165,0,0.5), 0 0 60px rgba(255,165,0,0.5);
-  transform-origin: 50% 90%; animation: flicker 1s ease-in-out alternate infinite;
-  transition: opacity 0.3s ease;
-}
-
-.flame.extinguished { opacity: 0; pointer-events: none; }
-
-@keyframes flicker {
-  0% { transform: skewX(5deg); }
-  100% { transform: skewX(-5deg); }
-}
-
 .confetti-piece {
   position: fixed; z-index: 999; pointer-events: none;
   animation: fall linear forwards;
@@ -184,3 +161,215 @@ footer .heart{display:inline-block;color:var(--accent);animation:heartbeat 1.5s 
 @keyframes fall {
   to { transform: translateY(105vh) rotate(360deg); }
 }
+
+/* ========================================= */
+/* CSS BLOW BUTTON & BALLOONS                */
+/* ========================================= */
+
+.blow-btn {
+  background: linear-gradient(135deg, var(--accent3), #f59e0b);
+  color: #fff;
+  border: none;
+  padding: 12px 35px;
+  border-radius: 30px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+  transition: all 0.3s ease;
+  margin: 10px auto 30px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.blow-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(251, 191, 36, 0.6);
+}
+
+.flame {
+  position: absolute;
+  background-color: orange;
+  width: 15px;
+  height: 35px;
+  border-radius: 10px 10px 10px 10px/25px 25px 10px 10px;
+  top: -34px;
+  left: 50%;
+  margin-left: -7.5px;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(255,165,0,0.5), 0 0 20px rgba(255,165,0,0.5), 0 0 60px rgba(255,165,0,0.5);
+  transform-origin: 50% 90%;
+  animation: flicker 1s ease-in-out alternate infinite;
+  transition: all 0.5s ease-out;
+}
+
+.flame.extinguished {
+  opacity: 0;
+  transform: scale(0) translateY(15px);
+  pointer-events: none;
+}
+
+@keyframes flicker {
+  0% { transform: skewX(5deg); }
+  100% { transform: skewX(-5deg); }
+}
+
+.balloon {
+  position: fixed;
+  bottom: -100px;
+  width: 45px;
+  height: 55px;
+  background-color: var(--b-color);
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  z-index: 9999;
+  pointer-events: none;
+  animation: floatUp ease-in forwards;
+  box-shadow: inset -10px -10px 15px rgba(0,0,0,0.15), inset 10px 10px 10px rgba(255,255,255,0.3);
+}
+
+.balloon::before {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 7px solid var(--b-color);
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  bottom: -45px;
+  left: 50%;
+  width: 1px;
+  height: 45px;
+  background: rgba(255,255,255,0.4);
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-120vh) rotate(15deg); opacity: 0; }
+}
+
+/* ========================================= */
+/* CSS WAX SEAL ENVELOPE (NEW FINAL SECTION) */
+/* ========================================= */
+
+.envelope-wrapper {
+  position: relative;
+  width: 320px;
+  height: 220px; /* قمنا بتكبير ارتفاع الظرف هنا */
+  margin: 3rem auto;
+  cursor: pointer;
+  perspective: 1000px;
+}
+.envelope {
+  position: absolute;
+  inset: 0;
+  background: #1e1e2f; 
+  border-radius: 8px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+  transition: transform 0.4s;
+}
+.envelope-wrapper:hover .envelope {
+  transform: translateY(-5px);
+}
+.envelope::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 0;
+  border-left: 160px solid #28283e;
+  border-right: 160px solid #28283e;
+  border-bottom: 110px solid #2c2c44;
+  border-top: 110px solid transparent;
+  border-radius: 8px;
+  z-index: 3;
+  pointer-events: none;
+}
+.envelope-flap {
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 0;
+  border-left: 160px solid transparent;
+  border-right: 160px solid transparent;
+  border-top: 120px solid #353552;
+  transform-origin: top;
+  transition: transform 0.6s, z-index 0s 0.3s;
+  z-index: 4;
+  border-radius: 8px 8px 0 0;
+}
+.envelope-seal {
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(135deg, #d93838, #9b1e1e);
+  border-radius: 50%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4), inset 0 0 10px rgba(0,0,0,0.2);
+  transition: all 0.4s;
+}
+
+/* تعديل مقاس الرسالة لتكون أصغر من الظرف فلا تظهر من الأعلى */
+.envelope-letter {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 290px;
+  height: 195px; /* صغرنا الرسالة لتستقر بالكامل بداخل الظرف */
+  background: #fffdf8;
+  border-radius: 5px;
+  padding: 20px 15px; 
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  z-index: 2; 
+  color: #222;
+  text-align: center;
+  transition: transform 0.8s 0.4s ease; 
+  overflow: hidden; 
+}
+.envelope-letter h3 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.6rem;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.envelope-letter p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  color: #444;
+}
+.letter-sig {
+  font-weight: 600;
+  color: var(--accent);
+  text-align: right;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+/* حركة فتح الظرف */
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1; 
+}
+.envelope.open .envelope-seal {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.5);
+}
+.envelope.open .envelope-letter {
+  transform: translate(-50%, -150px);
+  }
+           
