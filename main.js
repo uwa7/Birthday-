@@ -187,7 +187,6 @@ function openEnvelope() {
   const env = document.querySelector('.envelope');
   if (env && !env.classList.contains('open')) {
     env.classList.add('open');
-    // إطلاق بعض الكونفيتي البسيط احتفالاً بفتح الرسالة
     triggerConfetti(60);
   }
 }
@@ -208,4 +207,38 @@ window.addEventListener('load', () => {
     }
   }, 1500); 
 });
-        
+
+// =========================================
+// دالة فتح الهدية الكبرى وبداية المفاجآت (النسخة السريعة)
+// =========================================
+function openMainGift() {
+  const giftContainer = document.querySelector('.gift-box-container');
+  const giftOverlay = document.getElementById('gift-overlay');
+  const music = document.getElementById('bgMusic');
+  const musicBtn = document.getElementById('musicBtn');
+  
+  if (giftContainer && !giftContainer.classList.contains('open')) {
+    // حركة فتح الغطاء السريعة
+    giftContainer.classList.add('open');
+    
+    // الانتظار 200 مللي ثانية فقط بدل 600 عشان تختفي بسرعة طلقة
+    setTimeout(() => {
+      // إطلاق كونفيتي وبلالين
+      if (typeof triggerConfetti === 'function') triggerConfetti(120);
+      if (typeof triggerBalloons === 'function') triggerBalloons(25);
+      
+      // تشغيل الأغنية
+      if (music && music.paused) {
+        music.play().then(() => {
+          if (musicBtn) musicBtn.classList.add('playing');
+        }).catch(e => console.log("Audio presentation blocked"));
+      }
+      
+      // إخفاء طبقة الهدية وعرض الموقع
+      if (giftOverlay) {
+        giftOverlay.classList.add('hide');
+      }
+    }, 200); 
+  }
+                    }
+  
