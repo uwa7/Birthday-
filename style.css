@@ -165,7 +165,6 @@ footer .heart{display:inline-block;color:var(--accent);animation:heartbeat 1.5s 
 /* ========================================= */
 /* CSS BLOW BUTTON & BALLOONS                */
 /* ========================================= */
-
 .blow-btn {
   background: linear-gradient(135deg, var(--accent3), #f59e0b);
   color: #fff;
@@ -259,11 +258,10 @@ footer .heart{display:inline-block;color:var(--accent);animation:heartbeat 1.5s 
 /* ========================================= */
 /* CSS WAX SEAL ENVELOPE (NEW FINAL SECTION) */
 /* ========================================= */
-
 .envelope-wrapper {
   position: relative;
   width: 320px;
-  height: 220px; /* قمنا بتكبير ارتفاع الظرف هنا */
+  height: 220px; 
   margin: 3rem auto;
   cursor: pointer;
   perspective: 1000px;
@@ -322,14 +320,13 @@ footer .heart{display:inline-block;color:var(--accent);animation:heartbeat 1.5s 
   transition: all 0.4s;
 }
 
-/* تعديل مقاس الرسالة لتكون أصغر من الظرف فلا تظهر من الأعلى */
 .envelope-letter {
   position: absolute;
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   width: 290px;
-  height: 195px; /* صغرنا الرسالة لتستقر بالكامل بداخل الظرف */
+  height: 195px; 
   background: #fffdf8;
   border-radius: 5px;
   padding: 20px 15px; 
@@ -360,7 +357,6 @@ footer .heart{display:inline-block;color:var(--accent);animation:heartbeat 1.5s 
   font-size: 0.9rem;
 }
 
-/* حركة فتح الظرف */
 .envelope.open .envelope-flap {
   transform: rotateX(180deg);
   z-index: 1; 
@@ -371,5 +367,159 @@ footer .heart{display:inline-block;color:var(--accent);animation:heartbeat 1.5s 
 }
 .envelope.open .envelope-letter {
   transform: translate(-50%, -150px);
-  }
-           
+}
+
+/* ========================================= */
+/* CSS للمفاجأة وصندوق الهدية (الشكل الجديد والسريع) */
+/* ========================================= */
+#gift-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 15, 26, 0.95); /* خلفية زجاجية */
+  backdrop-filter: blur(8px);
+  z-index: 9998; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* تسريع اختفاء الشاشة بالكامل لـ 0.2 ثانية بدل 0.8 */
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+#gift-overlay.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.gift-wrapper {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+}
+
+.gift-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem;
+  color: #fff;
+  background: linear-gradient(135deg, #fff, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 5px;
+}
+
+.gift-subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  animation: pulseHint 1.5s infinite ease-in-out;
+}
+
+.gift-box-container {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.gift-box-container:hover {
+  transform: scale(1.05);
+}
+
+.gift-box-body {
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  width: 150px;
+  height: 120px;
+  /* شكل الهدية الجديد: تدرج لوني وتوهج */
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6); 
+  border-radius: 12px 12px 6px 6px; 
+  box-shadow: 0 10px 35px rgba(139, 92, 246, 0.6); 
+  overflow: hidden;
+}
+
+.gift-lid {
+  position: absolute;
+  bottom: 115px;
+  left: -2px;
+  width: 164px;
+  height: 28px;
+  background: linear-gradient(135deg, #7c3aed, #2563eb);
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  z-index: 2;
+  /* تسريع طيران الغطاء لـ 0.25 ثانية */
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
+}
+
+/* لون الشريطة الجديد الذهبي */
+.gift-ribbon-v {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 100%;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  box-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+}
+
+.gift-ribbon-h {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 26px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  box-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+}
+
+.gift-bow {
+  position: absolute;
+  bottom: 135px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  z-index: 3;
+  /* تسريع حركة الفيونكة */
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
+}
+
+.gift-bow::before, .gift-bow::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  border-radius: 50% 50% 0 50%;
+  transform: rotate(-45deg);
+  top: 10px;
+}
+
+.gift-bow::before { left: 0px; }
+.gift-bow::after {
+  left: 20px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(45deg);
+}
+
+.gift-box-container.open .gift-lid {
+  transform: translateY(-60px) rotate(-15deg);
+  opacity: 0;
+}
+
+.gift-box-container.open .gift-bow {
+  transform: translate(-50%, -70px) rotate(15deg);
+  opacity: 0;
+}
+
+.gift-box-container.open {
+  transform: scale(1.1);
+                                                                 }
+          
